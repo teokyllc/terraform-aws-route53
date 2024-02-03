@@ -35,11 +35,11 @@ variable "zone_id" {
 }
 
 variable "records" {
-  default = null
+  default = {}
 }
 
 variable "alias_records" {
-  default = null
+  default = {}
 }
 
 variable "vpc_id" {
