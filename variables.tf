@@ -28,34 +28,18 @@ variable "tags" {
   default     = null
 }
 
-variable "create_record" {
-  type        = bool
-  description = "Creates a DNS record."
-  default     = false
-}
-
-variable "create_alias_record" {
-  type        = bool
-  description = "Creates a DNS alias record."
-  default     = false
-}
-
 variable "zone_id" {
   type        = string
   description = "The Route 53 zone id to add records to."
   default     = false
 }
 
-variable "record_name" {
-  type        = string
-  description = "DNS record name."
-  default     = null
+variable "records" {
+  default = null
 }
 
-variable "record_type" {
-  type        = string
-  description = "DNS record type."
-  default     = null
+variable "alias_records" {
+  default = null
 }
 
 variable "record_ttl" {
@@ -79,5 +63,17 @@ variable "alias_evaluate_target_health" {
 variable "record_alias_name" {
   type        = string
   description = "DNS record name."
+  default     = null
+}
+
+variable "vpc_id" {
+  type        = string
+  description = "The VPC id if domain in internal only."
+  default     = null
+}
+
+variable "enable_private_dns" {
+  type        = bool
+  description = "If true the DNS zone is internal only."
   default     = null
 }

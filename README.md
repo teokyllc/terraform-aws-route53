@@ -11,7 +11,7 @@ You can use versioned release tags to ensure that your project using this module
 <b>Repo latest commit</b><br>
 ```
 module "r53" {
-  source = "github.com/Medality-Health/terraform-aws-route53"
+  source = "github.com/teokyllc/terraform-aws-route53"
   ...
 ```
 <br>
@@ -20,7 +20,7 @@ module "r53" {
 
 ```
 module "r53" {
-  source = "github.com/Medality-Health/terraform-aws-route53?ref=1.0.0"
+  source = "github.com/teokyllc/terraform-aws-route53?ref=1.0.0"
   ...
 ```
 <br>
@@ -30,7 +30,7 @@ This is an example of using this module to create a DNS zone with records.<br>
 
 ```
 module "r53" {
-  source = "github.com/Medality-Health/terraform-aws-route53?ref=1.0.0"
+  source = "github.com/teokyllc/terraform-aws-route53?ref=1.0.0"
   tags_platform                  = "mrionline"
   tags_platform_region           = "global"
   tags_layer                     = "dns"
@@ -74,7 +74,7 @@ module "r53" {
 <br><br>
 Module can be tested locally:<br>
 ```
-git clone https://github.com/Medality-Health/terraform-aws-route53.git
+git clone https://github.com/teokyllc/terraform-aws-route53.git
 cd terraform-aws-route53
 
 cat <<EOF > <MODULE_NAME>.auto.tfvars

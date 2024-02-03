@@ -4,27 +4,34 @@ resource "aws_route53_zone" "zone" {
   comment       = var.domain_comment
   force_destroy = var.force_destroy
   tags          = var.tags
+
+  dynamic "vpc" {
+    for_each = var.enable_private_dns ? [1] : []
+    content {
+      vpc_id = var.vpc_id
+    }
+  }
 }
 
-resource "aws_route53_record" "record" {
-  count   = var.create_record ? 1 : 0
-  zone_id = var.zone_id
-  name    = var.record_name
-  type    = var.record_type
-  ttl     = var.record_ttl
-  records = var.records
+resource "aws_route53_record" "records" {
+  for_each = var.records
+  zone_id  = var.zone_id
+  name     = each.value["name"]
+  type     = each.value["type"]
+  ttl      = each.value["ttl"]
+  records  = each.value["records"]
 }
 
-resource "aws_route53_record" "alias_record" {
-  count    = var.create_alias_record ? 1 : 0
-  name     = var.record_name
-  type     = var.record_type
-  ttl      = var.record_ttl
-  zone_id                = var.zone_id
+resource "aws_route53_record" "alias_records" {
+  for_each = var.alias_records
+  name     = each.value["name"]
+  type     = each.value["type"]
+  ttl      = each.value["ttl"]
+  zone_id  = var.zone_id
 
   alias {
-    name                   = var.record_alias_name
-    zone_id                = var.zone_id
-    evaluate_target_health = var.alias_evaluate_target_health
+    name                   = each.value["alias_name"]
+    zone_id                = each.value["alias_zone_id"]
+    evaluate_target_health = each.value["alias_evaluate_target_health"]
   }
 }
