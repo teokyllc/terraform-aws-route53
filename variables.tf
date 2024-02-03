@@ -42,30 +42,6 @@ variable "alias_records" {
   default = null
 }
 
-variable "record_ttl" {
-  type        = string
-  description = "DNS record time to live."
-  default     = null
-}
-
-variable "records" {
-  type        = list(any)
-  description = "A list of DNS records."
-  default     = null
-}
-
-variable "alias_evaluate_target_health" {
-  type        = bool
-  description = "Evaluates the health of the alias target."
-  default     = null
-}
-
-variable "record_alias_name" {
-  type        = string
-  description = "DNS record name."
-  default     = null
-}
-
 variable "vpc_id" {
   type        = string
   description = "The VPC id if domain in internal only."
